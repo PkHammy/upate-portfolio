@@ -10,19 +10,36 @@ export const Route = createFileRoute("/")({ component: Home });
 
 function Home() {
   return (
-    <>
+    <div className="h-screen bg-[#e5e5d1]">
       <Navbar />
 
-      <HeroSection />
-      <AboutSection />
+      <main
+        id="snap-container"
+        className="h-screen snap-y snap-mandatory overflow-y-scroll scroll-smooth"
+      >
+        <section id="home" className="h-screen snap-start">
+          <HeroSection />
+        </section>
 
-      {/* UNCOMMENT WHEN COMPLETE */}
-      <ProjectSection />
+        <section id="about" className="h-screen snap-start">
+          <AboutSection />
+        </section>
 
-      <ContactSection />
+        <section id="projects" className="h-screen snap-start">
+          <ProjectSection />
+        </section>
 
-      {/* <div className="h-screen w-full bg-fuchsia-400"></div> */}
-      <Footer />
-    </>
+        {/* Contact + Footer */}
+        <section className="flex min-h-screen snap-start flex-col" id="contact">
+          <div className="flex-1">
+            <ContactSection />
+          </div>
+
+          <footer className="bg-[#111111]">
+            <Footer />
+          </footer>
+        </section>
+      </main>
+    </div>
   );
 }

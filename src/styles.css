@@ -35,3 +35,7 @@ body {
     transform: scale(1);
   }
 }
+
+@utility transition-soft {
+  @apply transition-colors duration-150 ease-in-out;
+}
