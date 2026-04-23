@@ -5,7 +5,6 @@ import {
   useSpring,
   useTransform,
   AnimatePresence,
-  scale,
 } from "framer-motion";
 import { cn } from "#/util/tailwindmerge";
 import type { ClassNameValue } from "tailwind-merge";

@@ -67,7 +67,7 @@ function TiltCard({
   return (
     <div
       ref={ref}
-      className="relative [perspective:900px]"
+      className="relative perspective-[900px]"
       onMouseMove={onMove}
       onMouseEnter={() => scale.set(1.02)}
       onMouseLeave={() => {
@@ -127,7 +127,7 @@ export default function ProjectSection() {
             className="mb-12"
           >
             <div
-              className="inline-block max-w-xl rounded-sm border-[4px] border-(--ink) bg-(--paper) p-5 shadow-[6px_6px_0_var(--ink)] md:p-6"
+              className="inline-block max-w-xl rounded-sm border-4 border-(--ink) bg-(--paper) p-5 shadow-[6px_6px_0_var(--ink)] md:p-6"
               style={{ fontFamily: "'Permanent Marker', cursive" }}
             >
               <h2 className="font-['Bangers'] text-[clamp(28px,4vw,42px)] leading-tight tracking-wide text-(--ink) uppercase">
@@ -151,7 +151,7 @@ export default function ProjectSection() {
                 transition={{ delay: i * 0.1 }}
               >
                 <TiltCard ink="var(--ink)">
-                  <article className="group relative overflow-hidden rounded-sm border-[4px] border-(--ink) bg-(--paper)">
+                  <article className="group relative overflow-hidden rounded-sm border-4 border-(--ink) bg-(--paper)">
                     {/* Header Bar */}
                     <div className="flex items-center justify-between bg-(--ink) px-4 py-2 text-(--paper)">
                       <span className="font-['Bangers'] text-xl tracking-wider uppercase">
@@ -163,7 +163,7 @@ export default function ProjectSection() {
                     </div>
 
                     {/* Image Area with Reveal Effect */}
-                    <div className="relative aspect-[16/9] max-h-[180px] overflow-hidden border-b-[4px] border-(--ink)">
+                    <div className="relative aspect-video max-h-45 overflow-hidden border-b-[4px] border-(--ink)">
                       <img
                         src={project.screenshot}
                         alt={project.title}

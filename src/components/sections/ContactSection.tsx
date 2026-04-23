@@ -41,7 +41,7 @@ function TiltCard({
   return (
     <div
       ref={ref}
-      className="relative [perspective:900px]"
+      className="relative perspective-[900px]"
       onMouseMove={onMove}
       onMouseEnter={() => scale.set(1.01)}
       onMouseLeave={() => {
@@ -127,7 +127,7 @@ export default function ContactSection() {
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
               {/* LEFT — Info & Speech Bubble */}
               <div className="relative z-10 flex flex-col justify-center">
-                <div className="relative mb-10 inline-block self-start rounded-[2rem] border-4 border-(--ink) bg-white p-6 shadow-[6px_6px_0_var(--ink)]">
+                <div className="relative mb-10 inline-block self-start rounded-4xl border-4 border-(--ink) bg-white p-6 shadow-[6px_6px_0_var(--ink)]">
                   <h2 className="font-['Bangers'] text-[clamp(32px,4vw,52px)] leading-[0.95] tracking-wide text-(--ink) uppercase">
                     Let's Start a Conversation!
                   </h2>
@@ -172,7 +172,7 @@ export default function ContactSection() {
               <TiltCard ink="var(--ink)">
                 <div className="relative z-10 rounded-sm border-4 border-(--ink) bg-(--mid) p-8 shadow-inner">
                   {/* Form Header Bar */}
-                  <div className="-mx-8 -mt-8 mb-8 bg-(--ink) px-6 py-2 font-['Bangers'] text-xl tracking-[0.1em] text-(--paper) uppercase">
+                  <div className="-mx-8 -mt-8 mb-8 bg-(--ink) px-6 py-2 font-['Bangers'] text-xl tracking-widest text-(--paper) uppercase">
                     Transmission Form
                   </div>
 

@@ -1,7 +1,7 @@
 /**
  * AboutSection.tsx — Comic Book Style (Updated with Looping Action Labels)
  */
-import { Book, Lightbulb, MessageSquare, Palette, Trees } from "lucide-react";
+import { Lightbulb, MessageSquare, Palette, Trees } from "lucide-react";
 import { useRef, useCallback, useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { cn } from "#/util/tailwindmerge";
@@ -50,7 +50,7 @@ function HighlightCard({ icon, title, desc, color }: HighlightCardProps) {
         {/* Secret Action Label (Pops in and loops) */}
         <div
           className={cn(
-            "absolute -top-10 -right-10 z-20 flex h-20 w-20 scale-0 items-center justify-center rounded-full border-4 border-black font-['Bangers'] text-xl text-white shadow-[4px_4px_0_var(--ink)] transition-all duration-300 group-hover:top-[-12px] group-hover:right-[-12px] group-hover:scale-100 group-hover:rotate-12",
+            "absolute -top-10 -right-10 z-20 flex h-20 w-20 scale-0 items-center justify-center rounded-full border-4 border-black font-['Bangers'] text-xl text-white shadow-[4px_4px_0_var(--ink)] transition-all duration-300 group-hover:-top-3 group-hover:-right-3 group-hover:scale-100 group-hover:rotate-12",
             phrases[index].bg,
           )}
         >

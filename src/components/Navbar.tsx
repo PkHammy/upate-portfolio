@@ -109,10 +109,10 @@ export default function Navbar() {
     <motion.header
       animate={{ y: visible ? 0 : "-110%" }}
       transition={{ duration: 0.25, ease: "easeInOut" }}
-      className="fixed top-0 right-0 left-0 z-[100] p-3 sm:p-5"
+      className="fixed top-0 right-0 left-0 z-100 p-3 sm:p-5"
     >
       <nav
-        className="mx-auto flex max-w-[1100px] items-center justify-between rounded-sm border-4 px-5 py-2.5"
+        className="mx-auto flex max-w-275 items-center justify-between rounded-sm border-4 px-5 py-2.5"
         style={{
           backgroundColor: paper,
           borderColor: ink,
@@ -183,7 +183,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
-            className="mx-auto mt-2 flex max-w-[1100px] flex-col gap-2 rounded-sm border-4 p-4"
+            className="mx-auto mt-2 flex max-w-275 flex-col gap-2 rounded-sm border-4 p-4"
             style={{
               backgroundColor: paper,
               borderColor: ink,
