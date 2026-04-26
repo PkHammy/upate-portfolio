@@ -162,7 +162,7 @@ export default function ProjectSection() {
                     </div>
 
                     {/* Image Area */}
-                    <div className="relative aspect-video max-h-40 overflow-hidden border-b-[4px] border-(--ink) sm:max-h-45">
+                    <div className="relative aspect-video max-h-40 overflow-hidden border-b-4 border-(--ink) sm:max-h-45">
                       <img
                         src={project.screenshot}
                         alt={project.title}
