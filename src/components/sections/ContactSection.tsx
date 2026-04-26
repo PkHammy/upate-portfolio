@@ -95,7 +95,7 @@ export default function ContactSection() {
     <div style={themeStyles}>
       <section
         id="contact"
-        className="relative border-t-4 border-(--ink) px-6 py-20 transition-colors duration-300"
+        className="relative flex min-h-screen items-center justify-center border-t-4 border-(--ink) px-6 py-20 transition-colors duration-300"
         style={{
           backgroundColor: "var(--paper)",
           backgroundImage: `radial-gradient(circle, var(--dots) 1px, transparent 1px)`,

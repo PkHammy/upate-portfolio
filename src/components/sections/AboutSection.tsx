@@ -214,7 +214,7 @@ export default function AboutSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          className="relative mx-auto max-w-6xl rounded-sm border-[5px] border-(--ink) bg-(--paper) p-8 shadow-[10px_10px_0_var(--ink)] md:p-12"
+          className="relative mx-auto mt-20 max-w-6xl rounded-sm border-[5px] border-(--ink) bg-(--paper) p-8 shadow-[10px_10px_0_var(--ink)] md:p-12"
         >
           <div
             className="pointer-events-none absolute inset-0 opacity-[0.03]"
