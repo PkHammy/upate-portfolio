@@ -387,7 +387,7 @@ function PhotoPanel() {
           className="absolute inset-0"
           style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
         >
-          <div className="relative flex h-full w-full flex-col items-center justify-center gap-3 rounded-sm border-[4px] border-(--ink) bg-yellow-400 p-6 shadow-[6px_6px_0_var(--ink)] sm:border-[5px]">
+          <div className="relative flex h-full w-full flex-col items-center justify-center gap-3 rounded-sm border-4 border-(--ink) bg-yellow-400 p-6 shadow-[6px_6px_0_var(--ink)] sm:border-[5px]">
             {/* Dot texture */}
             <div
               className="pointer-events-none absolute inset-0 rounded-sm opacity-20"
