@@ -17,35 +17,18 @@ const fonts = `
 export default function HeroSection() {
   const [isDark] = useState(false);
 
-  // Define CSS variables for the theme
   const themeStyles = {
     "--ink": isDark ? "#f0f0f0" : "#0a0a0a",
     "--paper": isDark ? "#111111" : "#f0ede6",
     "--dots": isDark ? "rgba(240,240,240,0.2)" : "rgba(10,10,10,0.15)",
   } as React.CSSProperties;
 
-  //
   const codes: CodeBlocksProps[] = [
-    {
-      text: "React",
-      className: "hover:bg-blue-500",
-    },
-    {
-      text: "TypeScript",
-      className: "hover:bg-blue-500",
-    },
-    {
-      text: "Python",
-      className: "hover:bg-[#9AD872]",
-    },
-    {
-      text: "Tailwind",
-      className: "hover:bg-[#56B6C6]",
-    },
-    {
-      text: "Node.js",
-      className: "hover:bg-blue-500",
-    },
+    { text: "React", className: "hover:bg-blue-500" },
+    { text: "TypeScript", className: "hover:bg-blue-500" },
+    { text: "Python", className: "hover:bg-[#9AD872]" },
+    { text: "Tailwind", className: "hover:bg-[#56B6C6]" },
+    { text: "Node.js", className: "hover:bg-blue-500" },
   ];
 
   return (
@@ -53,7 +36,7 @@ export default function HeroSection() {
       <style>{fonts}</style>
 
       <section
-        className="bg-sk relative min-h-screen overflow-hidden border-4 border-(--ink) px-6 pt-20 pb-10 transition-colors duration-300"
+        className="relative min-h-screen overflow-hidden border-4 border-(--ink) px-4 pt-20 pb-10 transition-colors duration-300 sm:px-6 sm:pt-24"
         style={{
           backgroundColor: "var(--paper)",
           backgroundImage: `radial-gradient(circle, var(--dots) 1px, transparent 1px)`,
@@ -63,24 +46,23 @@ export default function HeroSection() {
         }}
       >
         {/* Panel label */}
-        <div className="absolute top-0 left-6 z-10 rounded-b-sm bg-(--ink) px-3 py-1 text-[11px] tracking-widest text-(--paper) uppercase">
+        <div className="absolute top-0 left-4 z-10 rounded-b-sm bg-(--ink) px-3 py-1 text-[11px] tracking-widest text-(--paper) uppercase sm:left-6">
           Panel 01
         </div>
 
-        {/* Main grid */}
-        <div className="mx-auto grid min-h-[calc(100vh-140px)] max-w-275 grid-cols-1 items-center gap-12 md:grid-cols-2">
+        {/* Main grid — stacks on mobile, side-by-side on md+ */}
+        <div className="mx-auto grid min-h-[calc(100vh-100px)] max-w-6xl grid-cols-1 items-center gap-8 pt-8 md:grid-cols-2 md:gap-12">
           {/* LEFT — Text */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-4 sm:gap-5">
             <TiltCard ink="var(--ink)">
-              <div className="relative rounded-sm border-[5px] border-(--ink) bg-(--paper) p-7 md:p-8">
-                {/* Crosshatch overlay */}
+              <div className="relative rounded-sm border-[4px] border-(--ink) bg-(--paper) p-5 sm:border-[5px] sm:p-7 md:p-8">
                 <motion.div
                   whileHover={{
                     scale: 1.05,
-                    WebkitTextFillColor: "#669bbc", // Fills the outline with solid color
+                    WebkitTextFillColor: "#669bbc",
                     transition: { duration: 0.2 },
                   }}
-                  className="mb-5 cursor-default stroke-(--ink) font-['Bangers'] text-[clamp(44px,7vw,76px)] leading-[0.88] text-transparent uppercase"
+                  className="mb-3 cursor-default stroke-(--ink) font-['Bangers'] text-[clamp(40px,10vw,76px)] leading-[0.88] text-transparent uppercase sm:mb-5"
                   style={{ WebkitTextStroke: "3px var(--ink)" }}
                 >
                   Hamza
@@ -88,10 +70,10 @@ export default function HeroSection() {
                 <motion.div
                   whileHover={{
                     scale: 1.05,
-                    WebkitTextFillColor: "#FF0000", // Fills the outline with solid color
+                    WebkitTextFillColor: "#FF0000",
                     transition: { duration: 0.2 },
                   }}
-                  className="mb-5 cursor-default stroke-(--ink) font-['Bangers'] text-[clamp(44px,7vw,76px)] leading-[0.88] text-transparent uppercase"
+                  className="mb-4 cursor-default stroke-(--ink) font-['Bangers'] text-[clamp(40px,10vw,76px)] leading-[0.88] text-transparent uppercase sm:mb-5"
                   style={{ WebkitTextStroke: "3px var(--ink)" }}
                 >
                   NASIR
@@ -101,14 +83,13 @@ export default function HeroSection() {
                 <div className="flex flex-wrap gap-2">
                   {["Full Stack Dev", "Clean UI · Practical Code"].map((t) => {
                     const isFullStack = t.includes("Full");
-
                     return (
                       <motion.span
                         key={t}
                         whileHover={{
                           scale: 1.1,
                           rotate: isFullStack ? 2 : -2,
-                          backgroundColor: "#facc15", // Comic Yellow
+                          backgroundColor: "#facc15",
                           color: "#0a0a0a",
                           borderColor: "#0a0a0a",
                           boxShadow: "4px 4px 0px #0a0a0a",
@@ -118,7 +99,7 @@ export default function HeroSection() {
                           stiffness: 400,
                           damping: 10,
                         }}
-                        className={`cursor-default rounded-sm border-2 border-(--ink) px-3 py-1 font-['Permanent_Marker'] text-[11px] tracking-wider uppercase transition-colors ${
+                        className={`cursor-default rounded-sm border-2 border-(--ink) px-3 py-1 font-['Permanent_Marker'] text-[10px] tracking-wider uppercase transition-colors sm:text-[11px] ${
                           isFullStack
                             ? "bg-(--ink) text-(--paper)"
                             : "bg-transparent text-(--ink)"
@@ -136,13 +117,13 @@ export default function HeroSection() {
             <SpeechBubble
               ink="var(--ink)"
               paper="var(--paper)"
-              className="mt-5 ml-4"
+              className="mt-3 ml-3 sm:mt-5 sm:ml-4"
             >
               "I build apps that feel smooth, responsive, and easy to use."
             </SpeechBubble>
 
             {/* CTA buttons */}
-            <div className="mt-7 flex flex-wrap gap-3">
+            <div className="mt-4 flex flex-wrap gap-3 sm:mt-7">
               <ComicButton
                 href="#projects"
                 variant="primary"
@@ -163,21 +144,19 @@ export default function HeroSection() {
             </div>
 
             {/* Tech stack */}
-            <div className="mt-7">
-              <div className="mb-2.5 inline-block rounded-sm bg-(--ink) px-2.5 py-1 font-['Permanent_Marker'] text-[10px] tracking-widest text-(--paper) uppercase">
+            <div className="mt-4 sm:mt-7">
+              <div className="mb-2 inline-block rounded-sm bg-(--ink) px-2.5 py-1 font-['Permanent_Marker'] text-[10px] tracking-widest text-(--paper) uppercase">
                 Arsenal:
               </div>
               <div className="flex flex-wrap gap-2">
                 {codes.map(({ text, className }, index) => (
-                  //For each item in dataset
-                  //Create this element with these values
                   <CodeBlocks key={index} text={text} className={className} />
                 ))}
               </div>
             </div>
           </div>
 
-          {/* RIGHT — Photo */}
+          {/* RIGHT — Photo: centered on mobile, right-aligned on md+ */}
           <div className="flex items-center justify-center">
             <PhotoPanel />
           </div>
@@ -262,7 +241,7 @@ function SpeechBubble({
 }) {
   return (
     <div className={`relative ${className}`}>
-      <div className="rounded-[18px_18px_18px_4px] border-[3px] border-(--ink) bg-(--paper) p-3.5 px-5 font-['Permanent_Marker'] text-sm leading-relaxed tracking-wide text-(--ink) uppercase">
+      <div className="rounded-[18px_18px_18px_4px] border-[3px] border-(--ink) bg-(--paper) p-3 px-4 font-['Permanent_Marker'] text-xs leading-relaxed tracking-wide text-(--ink) uppercase sm:p-3.5 sm:px-5 sm:text-sm">
         {children}
       </div>
       {/* Tail */}
@@ -300,7 +279,7 @@ function ComicButton({
       onMouseDown={() => setPressed(true)}
       onMouseUp={() => setPressed(false)}
       onMouseLeave={() => setPressed(false)}
-      className={`relative cursor-pointer rounded-sm border-[3px] border-(--ink) px-6 py-2.5 font-['Bangers'] text-[22px] tracking-wider uppercase transition-all duration-75 select-none ${bg} ${
+      className={`relative cursor-pointer rounded-sm border-[3px] border-(--ink) px-5 py-2.5 font-['Bangers'] text-xl tracking-wider uppercase transition-all duration-75 select-none sm:px-6 sm:text-[22px] ${bg} ${
         pressed
           ? "translate-x-0.75 translate-y-0.75 shadow-[1px_1px_0_var(--ink)]"
           : "translate-x-0 translate-y-0 shadow-[5px_5px_0_var(--ink)]"
@@ -324,13 +303,13 @@ function ComicButton({
   );
 }
 
-// ── Photo panel ───────────────────────────────────────────────────────────────
+// ── Code block badge ──────────────────────────────────────────────────────────
 
 export interface CodeBlocksProps {
   text: string;
   className: ClassNameValue;
 }
-// colour hover effect with looping
+
 export function CodeBlocks({ text, className }: CodeBlocksProps) {
   return (
     <div>
@@ -347,12 +326,15 @@ export function CodeBlocks({ text, className }: CodeBlocksProps) {
   );
 }
 
+// ── Photo panel ───────────────────────────────────────────────────────────────
+
 function PhotoPanel() {
   const [clicked] = useState(false);
 
   return (
     <TiltCard ink="var(--ink)">
-      <div className="group/colorPicker relative h-95 w-75 cursor-pointer rounded-sm border-[5px] border-(--ink) bg-gray-500">
+      {/* Responsive sizing: smaller on mobile */}
+      <div className="group/colorPicker relative h-72 w-56 cursor-pointer rounded-sm border-[4px] border-(--ink) bg-gray-500 sm:h-80 sm:w-64 sm:border-[5px] md:h-95 md:w-75">
         {/* Speed lines */}
         <div
           className="pointer-events-none relative inset-0 z-10"

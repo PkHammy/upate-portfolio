@@ -1,5 +1,5 @@
 /**
- * ProjectSection.tsx — Comic Book Style (Updated)
+ * ProjectSection.tsx — Comic Book Style (Responsive Update)
  */
 
 import { useRef, useCallback } from "react";
@@ -14,7 +14,7 @@ const PROJECTS = [
     description:
       "A Python-powered web app for managing and displaying project data through a clean interface.",
     href: "#",
-    hoverColor: "#9AD872", // Green reveal
+    hoverColor: "#9AD872",
   },
   {
     title: "Automation Tool",
@@ -24,7 +24,7 @@ const PROJECTS = [
     description:
       "Workflow automation for repetitive tasks — streamlines data handling and boosts productivity.",
     href: "#",
-    hoverColor: "#ff4d4d", // Red reveal
+    hoverColor: "#ff4d4d",
   },
   {
     title: "Portfolio App",
@@ -34,7 +34,7 @@ const PROJECTS = [
     description:
       "A modern portfolio built to showcase projects, technical strengths, and a polished design system.",
     href: "#",
-    hoverColor: "#38bdf8", // Blue reveal
+    hoverColor: "#38bdf8",
   },
 ];
 
@@ -96,7 +96,6 @@ function TiltCard({
 }
 
 export default function ProjectSection() {
-  // Use CSS variables to match HeroSection
   const themeStyles = {
     "--ink": "#0a0a0a",
     "--paper": "#f0ede6",
@@ -107,41 +106,41 @@ export default function ProjectSection() {
     <div style={themeStyles}>
       <section
         id="projects"
-        className="relative flex min-h-screen items-center border-t-4 border-(--ink) px-6 py-20 pt-24 transition-colors duration-300 md:pt-32"
+        className="relative flex min-h-screen items-center border-t-4 border-(--ink) px-4 py-16 pt-20 transition-colors duration-300 sm:px-6 sm:pt-24 md:pt-32"
         style={{
           backgroundColor: "var(--paper)",
           backgroundImage: `radial-gradient(circle, var(--dots) 1px, transparent 1px)`,
           backgroundSize: "12px 12px",
         }}
       >
-        {/* Panel 02 label */}
-        <div className="absolute top-0 left-6 z-10 rounded-b-sm bg-(--ink) px-3 py-1 font-['Permanent_Marker'] text-[11px] tracking-widest text-(--paper) uppercase">
+        {/* Panel label */}
+        <div className="absolute top-0 left-4 z-10 rounded-b-sm bg-(--ink) px-3 py-1 font-['Permanent_Marker'] text-[11px] tracking-widest text-(--paper) uppercase sm:left-6">
           Panel 03
         </div>
 
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto w-full max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mb-8 sm:mb-12"
           >
             <div
-              className="inline-block max-w-xl rounded-sm border-4 border-(--ink) bg-(--paper) p-5 shadow-[6px_6px_0_var(--ink)] md:p-6"
+              className="inline-block max-w-full rounded-sm border-4 border-(--ink) bg-(--paper) p-4 shadow-[6px_6px_0_var(--ink)] sm:max-w-xl sm:p-5 md:p-6"
               style={{ fontFamily: "'Permanent Marker', cursive" }}
             >
-              <h2 className="font-['Bangers'] text-[clamp(28px,4vw,42px)] leading-tight tracking-wide text-(--ink) uppercase">
+              <h2 className="font-['Bangers'] text-[clamp(24px,5vw,42px)] leading-tight tracking-wide text-(--ink) uppercase">
                 The Mission Log: Latest Deployments
               </h2>
-              <p className="mt-3 max-w-md text-xs leading-relaxed tracking-tight text-(--ink) uppercase opacity-80">
+              <p className="mt-2 max-w-md text-[10px] leading-relaxed tracking-tight text-(--ink) uppercase opacity-80 sm:mt-3 sm:text-xs">
                 A selection of work across dev, UI thinking, and practical
                 problem-solving. Engineering clean code with a visual punch.
               </p>
             </div>
           </motion.div>
 
-          {/* Grid */}
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+          {/* Grid: 1 col mobile → 2 col tablet → 3 col desktop */}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 lg:gap-10">
             {PROJECTS.map((project, i) => (
               <motion.div
                 key={project.title}
@@ -154,7 +153,7 @@ export default function ProjectSection() {
                   <article className="group relative overflow-hidden rounded-sm border-4 border-(--ink) bg-(--paper)">
                     {/* Header Bar */}
                     <div className="flex items-center justify-between bg-(--ink) px-4 py-2 text-(--paper)">
-                      <span className="font-['Bangers'] text-xl tracking-wider uppercase">
+                      <span className="font-['Bangers'] text-lg tracking-wider uppercase sm:text-xl">
                         {project.title}
                       </span>
                       <span className="font-['Permanent_Marker'] text-[10px] opacity-70">
@@ -162,14 +161,13 @@ export default function ProjectSection() {
                       </span>
                     </div>
 
-                    {/* Image Area with Reveal Effect */}
-                    <div className="relative aspect-video max-h-45 overflow-hidden border-b-[4px] border-(--ink)">
+                    {/* Image Area */}
+                    <div className="relative aspect-video max-h-40 overflow-hidden border-b-[4px] border-(--ink) sm:max-h-45">
                       <img
                         src={project.screenshot}
                         alt={project.title}
                         className="h-full w-full object-cover grayscale transition-all duration-500 group-hover:scale-110 group-hover:grayscale-0"
                       />
-                      {/* Halftone Overlay */}
                       <div
                         className="pointer-events-none absolute inset-0 z-10 opacity-40 mix-blend-multiply transition-opacity group-hover:opacity-10"
                         style={{
@@ -177,7 +175,6 @@ export default function ProjectSection() {
                           backgroundSize: "6px 6px",
                         }}
                       />
-                      {/* Color Wash on Hover */}
                       <div
                         className="absolute inset-0 z-0 opacity-0 transition-opacity duration-300 group-hover:opacity-20"
                         style={{ backgroundColor: project.hoverColor }}
@@ -185,12 +182,12 @@ export default function ProjectSection() {
                     </div>
 
                     {/* Content */}
-                    <div className="p-5">
-                      <p className="mb-4 font-['Permanent_Marker'] text-xs leading-relaxed text-(--ink) uppercase">
+                    <div className="p-4 sm:p-5">
+                      <p className="mb-3 font-['Permanent_Marker'] text-[10px] leading-relaxed text-(--ink) uppercase sm:mb-4 sm:text-xs">
                         {project.description}
                       </p>
 
-                      <div className="mb-6 flex flex-wrap gap-2">
+                      <div className="mb-4 flex flex-wrap gap-1.5 sm:mb-6 sm:gap-2">
                         {project.techstack.map((tech) => (
                           <span
                             key={tech}
@@ -205,7 +202,7 @@ export default function ProjectSection() {
                         href={project.href}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="inline-block w-full border-[3px] border-(--ink) bg-(--ink) py-2 text-center font-['Bangers'] text-lg tracking-widest text-(--paper) uppercase no-underline shadow-[4px_4px_0_#888] transition-all hover:bg-blue-600 active:shadow-none"
+                        className="inline-block w-full border-[3px] border-(--ink) bg-(--ink) py-2.5 text-center font-['Bangers'] text-base tracking-widest text-(--paper) uppercase no-underline shadow-[4px_4px_0_#888] transition-all hover:bg-blue-600 active:shadow-none sm:py-2 sm:text-lg"
                       >
                         Read Files →
                       </motion.a>

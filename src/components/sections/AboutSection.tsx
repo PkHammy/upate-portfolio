@@ -1,5 +1,5 @@
 /**
- * AboutSection.tsx — Comic Book Style (Updated with Looping Action Labels)
+ * AboutSection.tsx — Comic Book Style (Responsive Update)
  */
 import { Lightbulb, MessageSquare, Palette, Trees } from "lucide-react";
 import { useRef, useCallback, useState, useEffect } from "react";
@@ -14,7 +14,6 @@ interface HighlightCardProps {
 }
 
 function HighlightCard({ icon, title, desc, color }: HighlightCardProps) {
-  // Phrases and colors for the looping label
   const phrases = [
     { text: "KRAK!", bg: "bg-red-600" },
     { text: "POW!", bg: "bg-yellow-400" },
@@ -24,7 +23,6 @@ function HighlightCard({ icon, title, desc, color }: HighlightCardProps) {
 
   const [index, setIndex] = useState(0);
 
-  // Loop through phrases every 1 second
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % phrases.length);
@@ -34,7 +32,7 @@ function HighlightCard({ icon, title, desc, color }: HighlightCardProps) {
 
   return (
     <TiltCard ink="var(--ink)">
-      <div className="group relative overflow-hidden rounded-sm border-[3px] border-(--ink) bg-(--paper) p-5 transition-all duration-300 hover:shadow-[8px_8px_0_var(--ink)]">
+      <div className="group relative overflow-hidden rounded-sm border-[3px] border-(--ink) bg-(--paper) p-4 transition-all duration-300 hover:shadow-[8px_8px_0_var(--ink)] sm:p-5">
         {/* Interactive Color Burst on Hover */}
         <div
           className={cn(
@@ -47,10 +45,10 @@ function HighlightCard({ icon, title, desc, color }: HighlightCardProps) {
           }}
         />
 
-        {/* Secret Action Label (Pops in and loops) */}
+        {/* Secret Action Label */}
         <div
           className={cn(
-            "absolute -top-10 -right-10 z-20 flex h-20 w-20 scale-0 items-center justify-center rounded-full border-4 border-black font-['Bangers'] text-xl text-white shadow-[4px_4px_0_var(--ink)] transition-all duration-300 group-hover:-top-3 group-hover:-right-3 group-hover:scale-100 group-hover:rotate-12",
+            "absolute -top-10 -right-10 z-20 flex h-16 w-16 scale-0 items-center justify-center rounded-full border-4 border-black font-['Bangers'] text-base text-white shadow-[4px_4px_0_var(--ink)] transition-all duration-300 group-hover:-top-3 group-hover:-right-3 group-hover:scale-100 group-hover:rotate-12 sm:h-20 sm:w-20 sm:text-xl",
             phrases[index].bg,
           )}
         >
@@ -58,23 +56,19 @@ function HighlightCard({ icon, title, desc, color }: HighlightCardProps) {
         </div>
 
         <div className="relative z-10">
-          {/* Icon - Jumps and rotates */}
-          <div className="mb-3 inline-block text-3xl transition-all duration-300 group-hover:scale-125 group-hover:-rotate-12 group-hover:drop-shadow-[2px_2px_0_var(--ink)]">
+          <div className="mb-2 inline-block text-2xl transition-all duration-300 group-hover:scale-125 group-hover:-rotate-12 group-hover:drop-shadow-[2px_2px_0_var(--ink)] sm:mb-3 sm:text-3xl">
             {icon}
           </div>
 
-          {/* Title - Turns red on hover */}
-          <h3 className="font-['Bangers'] text-2xl tracking-wide text-(--ink) uppercase transition-colors duration-300 group-hover:text-red-600">
+          <h3 className="font-['Bangers'] text-xl tracking-wide text-(--ink) uppercase transition-colors duration-300 group-hover:text-red-600 sm:text-2xl">
             {title}
           </h3>
 
-          {/* Description */}
-          <p className="mt-2 font-['Permanent_Marker'] text-[11px] leading-relaxed tracking-tighter text-(--ink) uppercase opacity-80 transition-opacity group-hover:opacity-100">
+          <p className="mt-2 font-['Permanent_Marker'] text-[10px] leading-relaxed tracking-tighter text-(--ink) uppercase opacity-80 transition-opacity group-hover:opacity-100 sm:text-[11px]">
             {desc}
           </p>
         </div>
 
-        {/* Bottom stylized border accent */}
         <div
           className={cn(
             "absolute bottom-0 left-0 h-1 w-0 transition-all duration-300 group-hover:w-full",
@@ -88,25 +82,25 @@ function HighlightCard({ icon, title, desc, color }: HighlightCardProps) {
 
 const HIGHLIGHTS: HighlightCardProps[] = [
   {
-    icon: <Palette size={36} color="#881616" strokeWidth={3} />,
+    icon: <Palette size={32} color="#881616" strokeWidth={3} />,
     title: "Frontend Focus",
     desc: "Responsive layouts, clean interactions, accessible UI.",
-    color: "bg-yellow-400", // Using TW class instead of hex for consistency with CN
+    color: "bg-yellow-400",
   },
   {
-    icon: <MessageSquare size={36} color="#0b696f" strokeWidth={3} />,
+    icon: <MessageSquare size={32} color="#0b696f" strokeWidth={3} />,
     title: "Full Stack",
     desc: "React, TypeScript, Python, and modern tooling.",
     color: "bg-sky-400",
   },
   {
-    icon: <Lightbulb size={36} color="#8c8921" strokeWidth={3} />,
+    icon: <Lightbulb size={32} color="#8c8921" strokeWidth={3} />,
     title: "Problem Solver",
     desc: "Turning rough ideas into polished digital products.",
     color: "bg-red-500",
   },
   {
-    icon: <Trees size={36} color="#139516" strokeWidth={3} />,
+    icon: <Trees size={32} color="#139516" strokeWidth={3} />,
     title: "Always Growing",
     desc: "Improving workflow, code quality, and design decisions.",
     color: "bg-green-500",
@@ -198,14 +192,14 @@ export default function AboutSection() {
     <div style={themeStyles}>
       <section
         id="about"
-        className="relative min-h-screen border-t-4 border-(--ink) px-6 py-20 pt-32 md:pt-40"
+        className="relative min-h-screen border-t-4 border-(--ink) px-4 py-16 pt-24 sm:px-6 sm:py-20 md:pt-32 lg:pt-40"
         style={{
           backgroundColor: "var(--paper)",
           backgroundImage: `radial-gradient(circle, var(--dots) 1px, transparent 1px)`,
           backgroundSize: "12px 12px",
         }}
       >
-        <div className="absolute top-0 left-6 z-10 rounded-b-sm bg-(--ink) px-3 py-1 font-['Permanent_Marker'] text-[11px] tracking-widest text-(--paper) uppercase">
+        <div className="absolute top-0 left-4 z-10 rounded-b-sm bg-(--ink) px-3 py-1 font-['Permanent_Marker'] text-[11px] tracking-widest text-(--paper) uppercase sm:left-6">
           Panel 02
         </div>
 
@@ -213,8 +207,8 @@ export default function AboutSection() {
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="relative mx-auto mt-20 max-w-6xl rounded-sm border-[5px] border-(--ink) bg-(--paper) p-8 shadow-[10px_10px_0_var(--ink)] md:p-12"
+          viewport={{ once: true, margin: "-80px" }}
+          className="relative mx-auto mt-12 max-w-6xl rounded-sm border-[4px] border-(--ink) bg-(--paper) p-5 shadow-[6px_6px_0_var(--ink)] sm:mt-16 sm:border-[5px] sm:p-8 sm:shadow-[10px_10px_0_var(--ink)] md:p-12"
         >
           <div
             className="pointer-events-none absolute inset-0 opacity-[0.03]"
@@ -224,13 +218,14 @@ export default function AboutSection() {
             }}
           />
 
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+          {/* Two-column on lg+, single column otherwise */}
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
             <motion.div variants={itemVariants} className="flex flex-col">
-              <h2 className="font-['Bangers'] text-[clamp(36px,5vw,60px)] leading-[0.9] tracking-wide text-(--ink) uppercase">
+              <h2 className="font-['Bangers'] text-[clamp(28px,6vw,60px)] leading-[0.9] tracking-wide text-(--ink) uppercase">
                 Creating user-friendly products with modern code.
               </h2>
 
-              <div className="mt-8 space-y-4 font-['Permanent_Marker'] text-sm leading-relaxed tracking-tight text-(--ink) uppercase">
+              <div className="mt-6 space-y-3 font-['Permanent_Marker'] text-xs leading-relaxed tracking-tight text-(--ink) uppercase sm:mt-8 sm:space-y-4 sm:text-sm">
                 <p>
                   I'm a Full Stack Developer who enjoys building websites and
                   apps that feel smooth, responsive, and easy to use.
@@ -245,19 +240,19 @@ export default function AboutSection() {
                 </p>
               </div>
 
-              <div className="mt-10 grid grid-cols-2 gap-4">
+              <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-10 sm:gap-4">
                 {[
                   { label: "Identity", value: "Hamza Nasir" },
                   { label: "Class", value: "Full Stack Dev" },
                 ].map((stat) => (
                   <div
                     key={stat.label}
-                    className="rounded-sm border-[3px] border-(--ink) bg-(--paper) p-3 shadow-[4px_4px_0_var(--ink)]"
+                    className="rounded-sm border-[3px] border-(--ink) bg-(--paper) p-2.5 shadow-[4px_4px_0_var(--ink)] sm:p-3"
                   >
                     <p className="font-['Permanent_Marker'] text-[9px] uppercase opacity-60">
                       {stat.label}
                     </p>
-                    <p className="font-['Bangers'] text-xl tracking-wider text-(--ink) uppercase">
+                    <p className="font-['Bangers'] text-lg tracking-wider text-(--ink) uppercase sm:text-xl">
                       {stat.value}
                     </p>
                   </div>
@@ -265,7 +260,8 @@ export default function AboutSection() {
               </div>
             </motion.div>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {/* 2×2 grid of highlight cards — responsive */}
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
               {HIGHLIGHTS.map((h, i) => (
                 <HighlightCard
                   key={i}

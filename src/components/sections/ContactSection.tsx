@@ -1,6 +1,5 @@
 /**
- * ContactSection.tsx — Comic Book Style
- * Section 04 with background consistency and fixed JSX nesting.
+ * ContactSection.tsx — Comic Book Style (Responsive Update)
  */
 
 import { useState, useRef, useCallback } from "react";
@@ -72,7 +71,7 @@ function TiltCard({
 const labelClasses =
   "block font-['Permanent_Marker'] text-[10px] uppercase tracking-wider text-(--ink) mb-1.5";
 const inputClasses =
-  "w-full font-['Permanent_Marker'] text-sm uppercase tracking-tight border-3 border-(--ink) rounded-xs bg-(--paper) text-(--ink) px-4 py-2.5 outline-none focus:ring-2 focus:ring-yellow-400 transition-all placeholder:opacity-40";
+  "w-full font-['Permanent_Marker'] text-sm uppercase tracking-tight border-3 border-(--ink) rounded-xs bg-(--paper) text-(--ink) px-4 py-3 outline-none focus:ring-2 focus:ring-yellow-400 transition-all placeholder:opacity-40 sm:py-2.5";
 
 export default function ContactSection() {
   const [sent, setSent] = useState(false);
@@ -95,27 +94,27 @@ export default function ContactSection() {
     <div style={themeStyles}>
       <section
         id="contact"
-        className="relative flex min-h-screen items-center justify-center border-t-4 border-(--ink) px-6 py-20 transition-colors duration-300"
+        className="relative flex min-h-screen items-center justify-center border-t-4 border-(--ink) px-4 py-16 pt-20 transition-colors duration-300 sm:px-6 sm:py-20"
         style={{
           backgroundColor: "var(--paper)",
           backgroundImage: `radial-gradient(circle, var(--dots) 1px, transparent 1px)`,
           backgroundSize: "12px 12px",
         }}
       >
-        {/* Section Label Tab (Panel 04) */}
-        <div className="absolute top-0 left-6 z-10 rounded-b-sm bg-(--ink) px-4 py-1.5 font-['Permanent_Marker'] text-[11px] tracking-widest text-(--paper) uppercase">
+        {/* Panel label */}
+        <div className="absolute top-0 left-4 z-10 rounded-b-sm bg-(--ink) px-4 py-1.5 font-['Permanent_Marker'] text-[11px] tracking-widest text-(--paper) uppercase sm:left-6">
           Panel 04: The Inquiry
         </div>
 
-        <div className="relative mx-auto max-w-6xl">
+        <div className="relative mx-auto w-full max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ type: "spring", stiffness: 280, damping: 22 }}
-            className="relative overflow-hidden rounded-sm border-[5px] border-(--ink) bg-(--paper) p-8 shadow-[10px_10px_0_var(--ink)] md:p-12"
+            className="relative overflow-hidden rounded-sm border-[4px] border-(--ink) bg-(--paper) p-5 shadow-[6px_6px_0_var(--ink)] sm:border-[5px] sm:p-8 sm:shadow-[10px_10px_0_var(--ink)] md:p-12"
           >
-            {/* Subtle Crosshatch Overlay Texture */}
+            {/* Crosshatch texture */}
             <div
               className="pointer-events-none absolute inset-0 opacity-[0.04]"
               style={{
@@ -124,23 +123,24 @@ export default function ContactSection() {
               }}
             />
 
-            <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+            {/* Two-column on lg+, single column stacked on mobile */}
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
               {/* LEFT — Info & Speech Bubble */}
               <div className="relative z-10 flex flex-col justify-center">
-                <div className="relative mb-10 inline-block self-start rounded-4xl border-4 border-(--ink) bg-white p-6 shadow-[6px_6px_0_var(--ink)]">
-                  <h2 className="font-['Bangers'] text-[clamp(32px,4vw,52px)] leading-[0.95] tracking-wide text-(--ink) uppercase">
+                <div className="relative mb-6 inline-block self-start rounded-3xl border-4 border-(--ink) bg-white p-5 shadow-[6px_6px_0_var(--ink)] sm:mb-10 sm:rounded-4xl sm:p-6">
+                  <h2 className="font-['Bangers'] text-[clamp(26px,5vw,52px)] leading-[0.95] tracking-wide text-(--ink) uppercase">
                     Let's Start a Conversation!
                   </h2>
                   {/* Speech Bubble Tail */}
                   <div className="absolute -bottom-4 left-10 h-6 w-6 rotate-45 border-r-4 border-b-4 border-(--ink) bg-white" />
                 </div>
 
-                <p className="font-['Permanent_Marker'] text-sm leading-relaxed tracking-tight text-(--ink)/80 uppercase">
+                <p className="font-['Permanent_Marker'] text-xs leading-relaxed tracking-tight text-(--ink)/80 uppercase sm:text-sm">
                   Have a project in mind or just want to say hi? I'm always open
                   to new opportunities and heroic collaborations.
                 </p>
 
-                <div className="mt-10 space-y-6">
+                <div className="mt-6 space-y-5 sm:mt-10 sm:space-y-6">
                   {[
                     {
                       label: "Direct Signal",
@@ -159,7 +159,7 @@ export default function ContactSection() {
                       </p>
                       <a
                         href={item.href}
-                        className="group inline-block font-['Bangers'] text-2xl tracking-wider text-(--ink) no-underline decoration-red-500 underline-offset-4 transition-all hover:underline"
+                        className="group inline-block font-['Bangers'] text-xl tracking-wider text-(--ink) no-underline decoration-red-500 underline-offset-4 transition-all hover:underline sm:text-2xl"
                       >
                         {item.value}
                       </a>
@@ -168,11 +168,11 @@ export default function ContactSection() {
                 </div>
               </div>
 
-              {/* RIGHT — The Form UI */}
+              {/* RIGHT — Form */}
               <TiltCard ink="var(--ink)">
-                <div className="relative z-10 rounded-sm border-4 border-(--ink) bg-(--mid) p-8 shadow-inner">
+                <div className="relative z-10 rounded-sm border-4 border-(--ink) bg-(--mid) p-5 shadow-inner sm:p-8">
                   {/* Form Header Bar */}
-                  <div className="-mx-8 -mt-8 mb-8 bg-(--ink) px-6 py-2 font-['Bangers'] text-xl tracking-widest text-(--paper) uppercase">
+                  <div className="-mx-5 -mt-5 mb-6 bg-(--ink) px-5 py-2 font-['Bangers'] text-lg tracking-widest text-(--paper) uppercase sm:-mx-8 sm:-mt-8 sm:mb-8 sm:px-6 sm:text-xl">
                     Transmission Form
                   </div>
 
@@ -183,12 +183,12 @@ export default function ContactSection() {
                         initial={{ scale: 0, rotate: -15 }}
                         animate={{ scale: 1, rotate: 0 }}
                         exit={{ scale: 0 }}
-                        className="py-12 text-center"
+                        className="py-10 text-center sm:py-12"
                       >
-                        <div className="font-['Bangers'] text-7xl tracking-tighter text-red-600 uppercase drop-shadow-[4px_4px_0_var(--ink)]">
+                        <div className="font-['Bangers'] text-6xl tracking-tighter text-red-600 uppercase drop-shadow-[4px_4px_0_var(--ink)] sm:text-7xl">
                           KAPOW!
                         </div>
-                        <p className="mt-4 font-['Permanent_Marker'] text-lg text-(--ink) uppercase">
+                        <p className="mt-4 font-['Permanent_Marker'] text-base text-(--ink) uppercase sm:text-lg">
                           Message Sent Successfully!
                         </p>
                       </motion.div>
@@ -199,6 +199,7 @@ export default function ContactSection() {
                         onSubmit={handleSubmit}
                         className="space-y-4"
                       >
+                        {/* Name + Email: stack on mobile, side-by-side on sm+ */}
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                           <div>
                             <label className={labelClasses}>
@@ -236,12 +237,14 @@ export default function ContactSection() {
                           />
                         </div>
 
+                        {/* Submit button — large tap target */}
                         <button
                           type="submit"
                           onMouseDown={() => setPressed(true)}
                           onMouseUp={() => setPressed(false)}
                           onMouseLeave={() => setPressed(false)}
-                          className={`group relative w-full cursor-pointer rounded-xs border-3 border-(--ink) bg-yellow-400 py-4 font-['Bangers'] text-2xl tracking-widest text-(--ink) uppercase transition-all ${pressed ? "translate-x-1 translate-y-1 shadow-none" : "shadow-[6px_6px_0_var(--ink)] hover:-translate-y-1 hover:shadow-[8px_8px_0_var(--ink)]"}`}
+                          aria-label="Submit contact form"
+                          className={`group relative w-full cursor-pointer rounded-xs border-3 border-(--ink) bg-yellow-400 py-4 font-['Bangers'] text-xl tracking-widest text-(--ink) uppercase transition-all sm:text-2xl ${pressed ? "translate-x-1 translate-y-1 shadow-none" : "shadow-[6px_6px_0_var(--ink)] hover:-translate-y-1 hover:shadow-[8px_8px_0_var(--ink)]"}`}
                         >
                           <span className="absolute -top-3 -right-2 rotate-12 rounded-sm border-2 border-(--ink) bg-red-600 px-2 py-0.5 font-['Bangers'] text-[10px] text-white">
                             ZAP!
