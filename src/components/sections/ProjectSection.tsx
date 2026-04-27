@@ -17,6 +17,22 @@ const PROJECTS = [
     hoverColor: "#9AD872",
   },
   {
+    title: "Hammy Comics",
+    screenshot: "./hammyComic.png",
+    techstack: [
+      "Python",
+      "Streamlit",
+      "aiohttp",
+      "BeautifulSoup",
+      "Pandas",
+      "Asyncio",
+    ],
+    description:
+      "Scrapes and processes comic data into structured JSON, then visualizes it in a fast, interactive browser-based viewer.",
+    href: "https://github.com/HamzaNasir0/hammycomic",
+    hoverColor: "#ff4d4d",
+  },
+  {
     title: "Automation Tool",
     screenshot:
       "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?auto=format&fit=crop&q=80&w=1200",
@@ -25,16 +41,6 @@ const PROJECTS = [
       "Workflow automation for repetitive tasks — streamlines data handling and boosts productivity.",
     href: "#",
     hoverColor: "#ff4d4d",
-  },
-  {
-    title: "Portfolio App",
-    screenshot:
-      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8c?auto=format&fit=crop&q=80&w=1200",
-    techstack: ["React", "TypeScript", "Tailwind"],
-    description:
-      "A modern portfolio built to showcase projects, technical strengths, and a polished design system.",
-    href: "#",
-    hoverColor: "#38bdf8",
   },
 ];
 
@@ -200,6 +206,8 @@ export default function ProjectSection() {
 
                       <motion.a
                         href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className="inline-block w-full border-[3px] border-(--ink) bg-(--ink) py-2.5 text-center font-['Bangers'] text-base tracking-widest text-(--paper) uppercase no-underline shadow-[4px_4px_0_#888] transition-all hover:bg-blue-600 active:shadow-none sm:py-2 sm:text-lg"
