@@ -17,12 +17,21 @@ export default function HeroSection() {
     "--dots": isDark ? "rgba(240,240,240,0.2)" : "rgba(10,10,10,0.15)",
   } as React.CSSProperties;
 
-  const codes: CodeBlocksProps[] = [
-    { text: "React", className: "hover:bg-blue-500" },
-    { text: "TypeScript", className: "hover:bg-blue-500" },
-    { text: "Python", className: "hover:bg-[#9AD872]" },
-    { text: "Tailwind", className: "hover:bg-[#56B6C6]" },
-    { text: "Node.js", className: "hover:bg-blue-500" },
+  const interfaceStack: CodeBlocksProps[] = [
+    { text: "React", className: "hover:bg-[#61DAFB] hover:text-black" },
+    { text: "TypeScript", className: "hover:bg-[#3178C6] hover:text-white" },
+    { text: "Tailwind", className: "hover:bg-[#06B6D4] hover:text-white" },
+    { text: "Streamlit", className: "hover:bg-[#FF4B4B] hover:text-white" },
+    { text: "Folium", className: "hover:bg-[#77B02A] hover:text-white" },
+  ];
+
+  const engineStack: CodeBlocksProps[] = [
+    { text: "Python", className: "hover:bg-[#3776AB] hover:text-white" },
+    { text: "Node.js", className: "hover:bg-[#339933] hover:text-white" },
+    { text: "Playwright", className: "hover:bg-[#2EAD33] hover:text-white" },
+    { text: "Selenium", className: "hover:bg-[#43B02A] hover:text-white" },
+    { text: "Aiohttp", className: "hover:bg-[#2C3E50] hover:text-white" },
+    { text: "Pandas", className: "hover:bg-[#150458] hover:text-white" },
   ];
 
   return (
@@ -138,14 +147,29 @@ export default function HeroSection() {
             </div>
 
             {/* Tech stack */}
-            <div className="mt-4 sm:mt-7">
-              <div className="mb-2 inline-block rounded-sm bg-(--ink) px-2.5 py-1 font-['Permanent_Marker'] text-[10px] tracking-widest text-(--paper) uppercase">
-                Arsenal:
+            <div className="mt-4 flex flex-col gap-3 sm:mt-7">
+              {/* Frontend */}
+              <div>
+                <div className="mb-2 inline-block rounded-sm bg-(--ink) px-2.5 py-1 font-['Permanent_Marker'] text-[10px] tracking-widest text-(--paper) uppercase">
+                  Frontend:
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {interfaceStack.map(({ text, className }, index) => (
+                    <CodeBlocks key={index} text={text} className={className} />
+                  ))}
+                </div>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {codes.map(({ text, className }, index) => (
-                  <CodeBlocks key={index} text={text} className={className} />
-                ))}
+
+              {/* Backend */}
+              <div>
+                <div className="mb-2 inline-block rounded-sm bg-(--ink) px-2.5 py-1 font-['Permanent_Marker'] text-[10px] tracking-widest text-(--paper) uppercase">
+                  Backend:
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {engineStack.map(({ text, className }, index) => (
+                    <CodeBlocks key={index} text={text} className={className} />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
