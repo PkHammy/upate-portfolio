@@ -7,14 +7,13 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 const PROJECTS = [
   {
-    title: "Python Project",
-    screenshot:
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200",
-    techstack: ["Python", "Flask", "SQLite"],
+    title: "UK Crime Map Suite",
+    screenshot: "./crimwatch.png",
+    techstack: ["Python", "Streamlit", "Folium", "Police API", "Postcodes API"],
     description:
-      "A Python-powered web app for managing and displaying project data through a clean interface.",
-    href: "#",
-    hoverColor: "#9AD872",
+      "A spatial analysis tool that visualizes real-time street-level crime data across the UK by integrating the Police.uk and Postcodes.io APIs into an interactive dashboard.",
+    href: "https://github.com/HamzaNasir0/crimewatch",
+    hoverColor: "#e05c5c",
   },
   {
     title: "Hammy Comics",
