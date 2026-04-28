@@ -18,22 +18,19 @@ function Home() {
         className="overflow-y-scroll scroll-smooth md:h-screen md:snap-y md:snap-mandatory"
       >
         {/* Mobile: natural height so content never clips. md+: h-screen + snap */}
-        <section id="home" className="md:h-screen md:snap-start">
+        <section id="home" className="md:min-h-screen">
           <HeroSection />
         </section>
 
-        <section id="about" className="md:h-screen md:snap-start">
+        <section id="about" className="md:min-h-screen">
           <AboutSection />
         </section>
 
-        <section id="projects" className="md:h-screen md:snap-start">
+        <section id="projects" className="md:min-h-screen">
           <ProjectSection />
         </section>
 
-        <section
-          className="flex min-h-screen flex-col md:snap-start"
-          id="contact"
-        >
+        <section className="flex min-h-screen flex-col" id="contact">
           <div className="flex-1">
             <ContactSection />
           </div>

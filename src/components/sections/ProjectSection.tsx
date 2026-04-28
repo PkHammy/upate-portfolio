@@ -81,7 +81,7 @@ function TiltCard({
   return (
     <div
       ref={ref}
-      className="relative perspective-[900px]"
+      className="relative h-full perspective-[900px]"
       onMouseMove={onMove}
       onMouseEnter={() => scale.set(1.02)}
       onMouseLeave={() => {
@@ -100,7 +100,7 @@ function TiltCard({
         }}
       />
       <motion.div
-        className="relative z-10"
+        className="relative z-10 h-full"
         style={{ rotateX, rotateY, scale, transformStyle: "preserve-3d" }}
       >
         {children}
@@ -162,11 +162,19 @@ export default function ProjectSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
+                className="h-full"
               >
                 <TiltCard ink="var(--ink)">
-                  <article className="group relative overflow-hidden rounded-sm border-4 border-(--ink) bg-(--paper)">
+                  {/* 
+                    grid-rows-[auto_160px_1fr]:
+                      Row 1 (auto)   — header bar
+                      Row 2 (160px)  — fixed-height image, never clips
+                      Row 3 (1fr)    — content stretches to match tallest card in row
+                    h-full ensures the article fills the motion wrapper so all cards align.
+                  */}
+                  <article className="group relative flex h-full flex-col overflow-hidden rounded-sm border-4 border-(--ink) bg-(--paper)">
                     {/* Header Bar */}
-                    <div className="flex items-center justify-between bg-(--ink) px-4 py-2 text-(--paper)">
+                    <div className="flex shrink-0 items-center justify-between bg-(--ink) px-4 py-2 text-(--paper)">
                       <span className="font-['Bangers'] text-lg tracking-wider uppercase sm:text-xl">
                         {project.title}
                       </span>
@@ -175,12 +183,12 @@ export default function ProjectSection() {
                       </span>
                     </div>
 
-                    {/* Image Area */}
-                    <div className="relative aspect-video max-h-40 overflow-hidden border-b-4 border-(--ink) sm:max-h-45">
+                    {/* Image Area — fixed height, never shrinks */}
+                    <div className="relative h-40 shrink-0 overflow-hidden border-b-4 border-(--ink)">
                       <img
                         src={project.screenshot}
                         alt={project.title}
-                        className="h-full w-full object-cover grayscale transition-all duration-500 group-hover:scale-110 group-hover:grayscale-0"
+                        className="h-full w-full object-cover object-center transition-all duration-500 group-hover:scale-110"
                       />
                       <div
                         className="pointer-events-none absolute inset-0 z-10 opacity-40 mix-blend-multiply transition-opacity group-hover:opacity-10"
@@ -195,30 +203,31 @@ export default function ProjectSection() {
                       />
                     </div>
 
-                    {/* Content */}
-                    <div className="p-4 sm:p-5">
-                      <p className="mb-3 font-['Permanent_Marker'] text-[10px] leading-relaxed text-(--ink) uppercase sm:mb-4 sm:text-xs">
+                    {/* Content — grows to fill remaining space, button pinned to bottom */}
+                    <div className="flex flex-1 flex-col p-4 sm:p-5">
+                      <p className="mb-3 font-['Permanent_Marker'] text-[12px] leading-relaxed text-(--ink) uppercase sm:mb-4 sm:text-xs">
                         {project.description}
                       </p>
 
-                      <div className="mb-4 flex flex-wrap gap-1.5 sm:mb-6 sm:gap-2">
+                      <div className="mb-4 flex flex-1 flex-wrap content-start gap-1.5 sm:mb-6 sm:gap-2">
                         {project.techstack.map((tech) => (
                           <span
                             key={tech}
-                            className="rounded-sm border-2 border-(--ink) bg-(--paper) px-2 py-0.5 font-['Permanent_Marker'] text-[9px] tracking-tighter text-(--ink) uppercase shadow-[2px_2px_0_var(--ink)]"
+                            className="h-fit rounded-sm border-2 border-(--ink) bg-(--paper) px-2 py-0.5 font-['Permanent_Marker'] text-[11px] tracking-tighter text-(--ink) uppercase shadow-[2px_2px_0_var(--ink)]"
                           >
                             {tech}
                           </span>
                         ))}
                       </div>
 
+                      {/* Button always sits at the bottom */}
                       <motion.a
                         href={project.href}
                         target="_blank"
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="inline-block w-full border-[3px] border-(--ink) bg-(--ink) py-2.5 text-center font-['Bangers'] text-base tracking-widest text-(--paper) uppercase no-underline shadow-[4px_4px_0_#888] transition-all hover:bg-blue-600 active:shadow-none sm:py-2 sm:text-lg"
+                        className="mt-auto inline-block w-full border-[3px] border-(--ink) bg-(--ink) py-2.5 text-center font-['Bangers'] text-base tracking-widest text-(--paper) uppercase no-underline shadow-[4px_4px_0_#888] transition-all hover:bg-blue-600 active:shadow-none sm:py-2 sm:text-lg"
                       >
                         Read Files →
                       </motion.a>
