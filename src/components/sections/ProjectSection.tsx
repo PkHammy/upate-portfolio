@@ -32,6 +32,15 @@ const PROJECTS = [
     hoverColor: "#ff4d4d",
   },
   {
+    title: "Rightmove Explorer",
+    screenshot: "./java.png",
+    techstack: ["Java", "Swing", "Jsoup", "Maven", "jpackage"],
+    description:
+      "Dark-themed desktop app that scrapes Rightmove house price data by postcode, displaying sale history, price trends, and property details in a modern card-based UI.",
+    href: "https://github.com/HamzaNasir0/right-move-explorer",
+    hoverColor: "#00E676",
+  },
+  {
     title: "Automation Tool",
     screenshot:
       "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?auto=format&fit=crop&q=80&w=1200",
