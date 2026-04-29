@@ -2,83 +2,9 @@
  * AboutSection.tsx — Comic Book Style (Responsive Update)
  */
 import { Lightbulb, MessageSquare, Palette, Trees } from "lucide-react";
-import { useRef, useCallback, useState, useEffect } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { cn } from "#/util/tailwindmerge";
-
-interface HighlightCardProps {
-  icon: React.ReactElement;
-  title: string;
-  desc: string;
-  color: string;
-}
-
-function HighlightCard({ icon, title, desc, color }: HighlightCardProps) {
-  const phrases = [
-    { text: "KRAK!", bg: "bg-red-600" },
-    { text: "POW!", bg: "bg-yellow-400" },
-    { text: "BAM!", bg: "bg-blue-600" },
-    { text: "ZAP!", bg: "bg-green-600" },
-  ];
-
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % phrases.length);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [phrases.length]);
-
-  return (
-    <TiltCard ink="var(--ink)">
-      <div className="group relative overflow-hidden rounded-sm border-[3px] border-(--ink) bg-(--paper) p-4 transition-all duration-300 hover:shadow-[8px_8px_0_var(--ink)] sm:p-5">
-        {/* Interactive Color Burst on Hover */}
-        <div
-          className={cn(
-            "absolute top-0 right-0 left-0 h-1.5 opacity-100 transition-all duration-500 group-hover:h-full group-hover:opacity-20",
-            color,
-          )}
-          style={{
-            backgroundImage: `radial-gradient(circle, var(--ink) 1.5px, transparent 1.5px)`,
-            backgroundSize: "6px 6px",
-          }}
-        />
-
-        {/* Secret Action Label */}
-        <div
-          className={cn(
-            "absolute -top-10 -right-10 z-20 flex h-16 w-16 scale-0 items-center justify-center rounded-full border-4 border-black font-['Bangers'] text-base text-white shadow-[4px_4px_0_var(--ink)] transition-all duration-300 group-hover:-top-3 group-hover:-right-3 group-hover:scale-100 group-hover:rotate-12 sm:h-20 sm:w-20 sm:text-xl",
-            phrases[index].bg,
-          )}
-        >
-          {phrases[index].text}
-        </div>
-
-        <div className="relative z-10">
-          <div className="mb-2 inline-block text-2xl transition-all duration-300 group-hover:scale-125 group-hover:-rotate-12 group-hover:drop-shadow-[2px_2px_0_var(--ink)] sm:mb-3 sm:text-3xl">
-            {icon}
-          </div>
-
-          <h3 className="font-['Bangers'] text-xl tracking-wide text-(--ink) uppercase transition-colors duration-300 group-hover:text-red-600 sm:text-2xl">
-            {title}
-          </h3>
-
-          <p className="mt-2 font-['Permanent_Marker'] text-[10px] leading-relaxed tracking-tighter text-(--ink) uppercase opacity-80 transition-opacity group-hover:opacity-100 sm:text-[11px]">
-            {desc}
-          </p>
-        </div>
-
-        <div
-          className={cn(
-            "absolute bottom-0 left-0 h-1 w-0 transition-all duration-300 group-hover:w-full",
-            color,
-          )}
-        />
-      </div>
-    </TiltCard>
-  );
-}
+import { motion } from "framer-motion";
+import HighlightCard from "#/components/features/HighlightCard";
+import type { HighlightCardProps } from "#/components/features/HighlightCard";
 
 const HIGHLIGHTS: HighlightCardProps[] = [
   {
@@ -106,63 +32,6 @@ const HIGHLIGHTS: HighlightCardProps[] = [
     color: "bg-green-500",
   },
 ];
-
-function TiltCard({
-  children,
-  ink,
-}: {
-  children: React.ReactNode;
-  ink: string;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const rawX = useMotionValue(0);
-  const rawY = useMotionValue(0);
-  const rotateX = useSpring(rawX, { stiffness: 260, damping: 20 });
-  const rotateY = useSpring(rawY, { stiffness: 260, damping: 20 });
-  const scale = useSpring(1, { stiffness: 300, damping: 25 });
-  const shadowX = useTransform(rotateY, [-10, 0, 10], [12, 6, -2]);
-  const shadowY = useTransform(rotateX, [-10, 0, 10], [-2, 6, 12]);
-
-  const onMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      if (!ref.current) return;
-      const r = ref.current.getBoundingClientRect();
-      rawY.set(((e.clientX - r.left) / r.width - 0.5) * 15);
-      rawX.set(((e.clientY - r.top) / r.height - 0.5) * -15);
-    },
-    [rawX, rawY],
-  );
-
-  return (
-    <div
-      ref={ref}
-      className="relative perspective-[900px]"
-      onMouseMove={onMove}
-      onMouseEnter={() => scale.set(1.03)}
-      onMouseLeave={() => {
-        rawX.set(0);
-        rawY.set(0);
-        scale.set(1);
-      }}
-    >
-      <motion.div
-        className="absolute inset-0 z-0 rounded-sm opacity-70"
-        style={{
-          backgroundImage: `radial-gradient(circle, ${ink} 1.5px, transparent 1.5px)`,
-          backgroundSize: "6px 6px",
-          x: shadowX,
-          y: shadowY,
-        }}
-      />
-      <motion.div
-        className="relative z-10"
-        style={{ rotateX, rotateY, scale, transformStyle: "preserve-3d" }}
-      >
-        {children}
-      </motion.div>
-    </div>
-  );
-}
 
 export default function AboutSection() {
   const themeStyles = {

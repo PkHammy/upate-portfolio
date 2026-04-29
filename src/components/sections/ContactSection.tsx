@@ -2,71 +2,9 @@
  * ContactSection.tsx — Comic Book Style (Responsive Update)
  */
 
-import { useState, useRef, useCallback } from "react";
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
-  AnimatePresence,
-} from "framer-motion";
-
-function TiltCard({
-  children,
-  ink,
-}: {
-  children: React.ReactNode;
-  ink: string;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const rawX = useMotionValue(0);
-  const rawY = useMotionValue(0);
-  const rotateX = useSpring(rawX, { stiffness: 260, damping: 20 });
-  const rotateY = useSpring(rawY, { stiffness: 260, damping: 20 });
-  const scale = useSpring(1, { stiffness: 300, damping: 25 });
-  const shadowX = useTransform(rotateY, [-10, 0, 10], [14, 8, -2]);
-  const shadowY = useTransform(rotateX, [-10, 0, 10], [-2, 8, 14]);
-
-  const onMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      if (!ref.current) return;
-      const r = ref.current.getBoundingClientRect();
-      rawY.set(((e.clientX - r.left) / r.width - 0.5) * 15);
-      rawX.set(((e.clientY - r.top) / r.height - 0.5) * -15);
-    },
-    [rawX, rawY],
-  );
-
-  return (
-    <div
-      ref={ref}
-      className="relative perspective-[900px]"
-      onMouseMove={onMove}
-      onMouseEnter={() => scale.set(1.01)}
-      onMouseLeave={() => {
-        rawX.set(0);
-        rawY.set(0);
-        scale.set(1);
-      }}
-    >
-      <motion.div
-        className="absolute inset-0 z-0 rounded-sm opacity-80"
-        style={{
-          backgroundImage: `radial-gradient(circle, ${ink} 1.5px, transparent 1.5px)`,
-          backgroundSize: "6px 6px",
-          x: shadowX,
-          y: shadowY,
-        }}
-      />
-      <motion.div
-        className="relative z-10"
-        style={{ rotateX, rotateY, scale, transformStyle: "preserve-3d" }}
-      >
-        {children}
-      </motion.div>
-    </div>
-  );
-}
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import TiltCard from "#/components/ui/TiltCard";
 
 const labelClasses =
   "block font-['Permanent_Marker'] text-[10px] uppercase tracking-wider text-(--ink) mb-1.5";
@@ -144,13 +82,13 @@ export default function ContactSection() {
                   {[
                     {
                       label: "Direct Signal",
-                      value: "hamza@email.com",
-                      href: "mailto:hamza@email.com",
+                      value: "lordhammy2gmail.com",
+                      href: "mailto:lordhammy2gmail.com",
                     },
                     {
                       label: "Network Access",
-                      value: "LinkedIn / hamza-nasir",
-                      href: "#",
+                      value: "Github / Hamza Nasir",
+                      href: "https://github.com/HamzaNasir0",
                     },
                   ].map((item) => (
                     <div key={item.label}>
@@ -169,7 +107,12 @@ export default function ContactSection() {
               </div>
 
               {/* RIGHT — Form */}
-              <TiltCard ink="var(--ink)">
+              <TiltCard
+                ink="var(--ink)"
+                shadowXOutput={[14, 8, -2]}
+                shadowYOutput={[-2, 8, 14]}
+                scaleOnEnter={1.01}
+              >
                 <div className="relative z-10 rounded-sm border-4 border-(--ink) bg-(--mid) p-5 shadow-inner sm:p-8">
                   {/* Form Header Bar */}
                   <div className="-mx-5 -mt-5 mb-6 bg-(--ink) px-5 py-2 font-['Bangers'] text-lg tracking-widest text-(--paper) uppercase sm:-mx-8 sm:-mt-8 sm:mb-8 sm:px-6 sm:text-xl">

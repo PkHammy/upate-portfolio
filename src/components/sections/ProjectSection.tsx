@@ -2,8 +2,8 @@
  * ProjectSection.tsx — Comic Book Style (Responsive Update)
  */
 
-import { useRef, useCallback } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
+import TiltCard from "#/components/ui/TiltCard";
 
 const PROJECTS = [
   {
@@ -51,63 +51,6 @@ const PROJECTS = [
     hoverColor: "#ff4d4d",
   },
 ];
-
-function TiltCard({
-  children,
-  ink,
-}: {
-  children: React.ReactNode;
-  ink: string;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const rawX = useMotionValue(0);
-  const rawY = useMotionValue(0);
-  const rotateX = useSpring(rawX, { stiffness: 260, damping: 20 });
-  const rotateY = useSpring(rawY, { stiffness: 260, damping: 20 });
-  const scale = useSpring(1, { stiffness: 300, damping: 25 });
-  const shadowX = useTransform(rotateY, [-10, 0, 10], [12, 8, -2]);
-  const shadowY = useTransform(rotateX, [-10, 0, 10], [-2, 8, 12]);
-
-  const onMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      if (!ref.current) return;
-      const r = ref.current.getBoundingClientRect();
-      rawY.set(((e.clientX - r.left) / r.width - 0.5) * 15);
-      rawX.set(((e.clientY - r.top) / r.height - 0.5) * -15);
-    },
-    [rawX, rawY],
-  );
-
-  return (
-    <div
-      ref={ref}
-      className="relative h-full perspective-[900px]"
-      onMouseMove={onMove}
-      onMouseEnter={() => scale.set(1.02)}
-      onMouseLeave={() => {
-        rawX.set(0);
-        rawY.set(0);
-        scale.set(1);
-      }}
-    >
-      <motion.div
-        className="absolute inset-0 z-0 rounded-sm opacity-80"
-        style={{
-          backgroundImage: `radial-gradient(circle, ${ink} 1.5px, transparent 1.5px)`,
-          backgroundSize: "6px 6px",
-          x: shadowX,
-          y: shadowY,
-        }}
-      />
-      <motion.div
-        className="relative z-10 h-full"
-        style={{ rotateX, rotateY, scale, transformStyle: "preserve-3d" }}
-      >
-        {children}
-      </motion.div>
-    </div>
-  );
-}
 
 export default function ProjectSection() {
   const themeStyles = {
@@ -164,8 +107,8 @@ export default function ProjectSection() {
                 transition={{ delay: i * 0.1 }}
                 className="h-full"
               >
-                <TiltCard ink="var(--ink)">
-                  {/* 
+                <TiltCard ink="var(--ink)" fullHeight>
+                  {/*
                     grid-rows-[auto_160px_1fr]:
                       Row 1 (auto)   — header bar
                       Row 2 (160px)  — fixed-height image, never clips
