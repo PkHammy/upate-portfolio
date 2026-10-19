@@ -7,48 +7,83 @@ import TiltCard from "#/components/ui/TiltCard";
 
 const PROJECTS = [
   {
-    title: "UK Crime Map Suite",
+    title: "Manga Shelf",
+    techstack: ["React", "TypeScript", "Tailwind CSS", "Supabase"],
+    description:
+      "Track your manga collection, manage collector profiles, and back up your shelves with private cloud saves.",
+    href: "https://pkhammy.github.io/Manga-Collector/",
+    sourceHref: "https://github.com/PkHammy/Manga-Collector",
+    hoverColor: "#a78bfa",
+    screenshot: "./projects/manga-shelf.svg",
+  },
+  {
+    title: "Undercover",
+    techstack: ["React", "TypeScript", "Express", "Socket.IO"],
+    description:
+      "A multiplayer imposter party game with secret roles, custom word packs, live voting, and room invites.",
+    href: "https://undercover-7acj.onrender.com/",
+    sourceHref: "https://github.com/PkHammy/undercover",
+    hoverColor: "#fb7185",
+    screenshot: "./projects/undercover.svg",
+  },
+  {
+    title: "Hammy Keys",
+    techstack: ["Python", "CustomTkinter", "Windows"],
+    description:
+      "Remap Windows keys and shortcuts while keeping your NuPhy Halo wireless. Includes profiles, live key testing, and a portable EXE.",
+    href: "https://github.com/PkHammy/nuphy-Halo-65",
+    sourceHref: "https://github.com/PkHammy/nuphy-Halo-65",
+    hoverColor: "#67e8f9",
+    screenshot: "./projects/hammy-keys.svg",
+  },
+  {
+    title: "Save One",
+    techstack: ["React", "Vite", "JavaScript"],
+    description:
+      "Choose a favourite game from each year, share your collection, and play a knockout tournament to crown your all-time champion.",
+    href: "https://pkhammy.github.io/saveone/",
+    sourceHref: "https://github.com/PkHammy/saveone",
+    hoverColor: "#facc15",
+    screenshot: "./projects/save-one.svg",
+  },
+  {
+    title: "Rider Budget",
+    techstack: ["Python", "Flask", "SQLite", "HTMX", "Tailwind CSS"],
+    description:
+      "Track delivery earnings, expenses, and shifts with weekly goals, net hourly rates, history, and CSV exports.",
+    href: "https://pkhammy.pythonanywhere.com/",
+    hoverColor: "#86efac",
+    screenshot: "./projects/rider-budget.svg",
+  },
+  {
+    title: "KeyComics",
+    screenshot: "./hammyComic.png",
+    techstack: ["JavaScript", "HTML", "CSS"],
+    description:
+      "Browse your exported comic collection with search, key-issue filters, pricing, and variant covers in a fast browser viewer.",
+    href: "https://pkhammy.github.io/hammycomic/",
+    sourceHref: "https://github.com/PkHammy/hammycomic",
+    hoverColor: "#ff4d4d",
+  },
+  {
+    title: "Crimewatch UK",
     screenshot: "./crimwatch.png",
     techstack: ["Python", "Streamlit", "Folium", "Police API", "Postcodes API"],
     description:
-      "A spatial analysis tool that visualizes real-time street-level crime data across the UK by integrating the Police.uk and Postcodes.io APIs into an interactive dashboard.",
-    href: "https://github.com/HamzaNasir0/crimewatch",
+      "Explore street-level UK crime data by postcode with interactive maps, category breakdowns, and a companion CLI for HTML map exports.",
+    href: "https://crimewatchuk.streamlit.app/",
+    sourceHref: "https://github.com/PkHammy/crimewatch",
     hoverColor: "#e05c5c",
-  },
-  {
-    title: "Hammy Comics",
-    screenshot: "./hammyComic.png",
-    techstack: [
-      "Python",
-      "Streamlit",
-      "aiohttp",
-      "BeautifulSoup",
-      "Pandas",
-      "Asyncio",
-    ],
-    description:
-      "Scrapes and processes comic data into structured JSON, then visualizes it in a fast, interactive browser-based viewer.",
-    href: "https://github.com/HamzaNasir0/hammycomic",
-    hoverColor: "#ff4d4d",
   },
   {
     title: "Rightmove Explorer",
     screenshot: "./java.png",
-    techstack: ["Java", "Swing", "Jsoup", "Maven", "jpackage"],
+    techstack: ["Java", "Swing", "Jsoup", "Maven"],
     description:
-      "Dark-themed desktop app that scrapes Rightmove house price data by postcode, displaying sale history, price trends, and property details in a modern card-based UI.",
-    href: "https://github.com/HamzaNasir0/right-move-explorer",
+      "A desktop app for browsing Rightmove house price data, sale history, and property details by postcode.",
+    href: "https://github.com/PkHammy/right-move-explorer",
+    sourceHref: "https://github.com/PkHammy/right-move-explorer",
     hoverColor: "#00E676",
-  },
-  {
-    title: "Automation Tool",
-    screenshot:
-      "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?auto=format&fit=crop&q=80&w=1200",
-    techstack: ["Python", "Selenium", "Pandas"],
-    description:
-      "Workflow automation for repetitive tasks — streamlines data handling and boosts productivity.",
-    href: "#",
-    hoverColor: "#ff4d4d",
   },
 ];
 
@@ -130,7 +165,8 @@ export default function ProjectSection() {
                     <div className="relative h-40 shrink-0 overflow-hidden border-b-4 border-(--ink)">
                       <img
                         src={project.screenshot}
-                        alt={project.title}
+                        alt={`${project.title} project preview`}
+                        loading="lazy"
                         className="h-full w-full object-cover object-center transition-all duration-500 group-hover:scale-110"
                       />
                       <div
@@ -172,8 +208,21 @@ export default function ProjectSection() {
                         whileTap={{ scale: 0.95 }}
                         className="mt-auto inline-block w-full border-[3px] border-(--ink) bg-(--ink) py-2.5 text-center font-['Bangers'] text-base tracking-widest text-(--paper) uppercase no-underline shadow-[4px_4px_0_#888] transition-all hover:bg-blue-600 active:shadow-none sm:py-2 sm:text-lg"
                       >
-                        Read Files →
+                        {project.href.includes("github.com")
+                          ? "View Project →"
+                          : "Launch App →"}
                       </motion.a>
+                      {project.sourceHref &&
+                        project.sourceHref !== project.href && (
+                          <a
+                            href={project.sourceHref}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-3 text-center text-xs font-bold text-(--ink) underline underline-offset-4"
+                          >
+                            View source on GitHub
+                          </a>
+                        )}
                     </div>
                   </article>
                 </TiltCard>
