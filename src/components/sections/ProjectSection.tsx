@@ -14,7 +14,7 @@ const PROJECTS = [
     href: "https://pkhammy.github.io/Manga-Collector/",
     sourceHref: "https://github.com/PkHammy/Manga-Collector",
     hoverColor: "#a78bfa",
-    screenshot: "./projects/manga-shelf.svg",
+    screenshot: "./projects/manga-shelf.jpg",
   },
   {
     title: "Undercover",
@@ -24,7 +24,7 @@ const PROJECTS = [
     href: "https://undercover-7acj.onrender.com/",
     sourceHref: "https://github.com/PkHammy/undercover",
     hoverColor: "#fb7185",
-    screenshot: "./projects/undercover.svg",
+    screenshot: "./projects/undercover.jpg",
   },
   {
     title: "Hammy Keys",
@@ -34,7 +34,7 @@ const PROJECTS = [
     href: "https://github.com/PkHammy/nuphy-Halo-65",
     sourceHref: "https://github.com/PkHammy/nuphy-Halo-65",
     hoverColor: "#67e8f9",
-    screenshot: "./projects/hammy-keys.svg",
+    screenshot: "./projects/hammy-keys.jpg",
   },
   {
     title: "Save One",
@@ -53,11 +53,11 @@ const PROJECTS = [
       "Track delivery earnings, expenses, and shifts with weekly goals, net hourly rates, history, and CSV exports.",
     href: "https://pkhammy.pythonanywhere.com/",
     hoverColor: "#86efac",
-    screenshot: "./projects/rider-budget.svg",
+    screenshot: "./projects/rider-budget.jpg",
   },
   {
     title: "KeyComics",
-    screenshot: "./hammyComic.png",
+    screenshot: "./projects/keycomics.jpg",
     techstack: ["JavaScript", "HTML", "CSS"],
     description:
       "Browse your exported comic collection with search, key-issue filters, pricing, and variant covers in a fast browser viewer.",
@@ -67,7 +67,7 @@ const PROJECTS = [
   },
   {
     title: "Crimewatch UK",
-    screenshot: "./crimwatch.png",
+    screenshot: "./projects/crimewatch.jpg",
     techstack: ["Python", "Streamlit", "Folium", "Police API", "Postcodes API"],
     description:
       "Explore street-level UK crime data by postcode with interactive maps, category breakdowns, and a companion CLI for HTML map exports.",
@@ -162,7 +162,7 @@ export default function ProjectSection() {
                     </div>
 
                     {/* Image Area — fixed height, never shrinks */}
-                    <div className="relative h-40 shrink-0 overflow-hidden border-b-4 border-(--ink)">
+                    <div className="relative aspect-video shrink-0 overflow-hidden border-b-4 border-(--ink)">
                       <img
                         src={project.screenshot}
                         alt={`${project.title} project preview`}
@@ -170,7 +170,7 @@ export default function ProjectSection() {
                         className="h-full w-full object-cover object-center transition-all duration-500 group-hover:scale-110"
                       />
                       <div
-                        className="pointer-events-none absolute inset-0 z-10 opacity-40 mix-blend-multiply transition-opacity group-hover:opacity-10"
+                        className="pointer-events-none absolute inset-0 z-10 opacity-10 mix-blend-multiply transition-opacity group-hover:opacity-0"
                         style={{
                           backgroundImage: `radial-gradient(circle, var(--ink) 1px, transparent 1px)`,
                           backgroundSize: "6px 6px",
