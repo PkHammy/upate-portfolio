@@ -44,7 +44,7 @@ const PROJECTS = [
     href: "https://pkhammy.github.io/saveone/",
     sourceHref: "https://github.com/PkHammy/saveone",
     hoverColor: "#facc15",
-    screenshot: "./projects/save-one.svg",
+    screenshot: "./projects/save-one.jpg",
   },
   {
     title: "Rider Budget",
